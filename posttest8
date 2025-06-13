@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Biodata Mahasiswa</title>
+</head>
+<body>
+    <h2>Form Biodata</h2>
+
+    <!-- Form input, data dikirim dengan metode POST -->
+    <form method="post">
+        <!-- Input nama -->
+        Nama: <input type="text" name="nama" placeholder="Masukkan Nama" required=""><br><br>
+
+        <!-- Input umur -->
+        Kelas: <input type="text" name="kelas" placeholder="Masukkan Kelas" required=""><br><br>
+
+        <!-- Pilihan status mahasiswa dengan radio button -->
+        identitas:<br>
+        <input type="radio" name="identitas" value="mahasiswa" id="mahasiswa">
+        <label for="mahasiswa">Mahasiswa</label><br>
+
+        <input type="radio" name="identitas" value="mahasiswi" id="mahasiswi">
+        <label for="mahasiswi">Mahasiwi</label><br>
+
+        <input type="radio" name="identitas" value="sigma" id="sigma">
+        <label for="sigma">Sigma</label><br>
+
+        <input type="radio" name="identitas" value="jawa" id="jawa">
+        <label for="jawa">Jawa</label><br>
+
+        <!-- Tombol kirim -->
+        <input type="submit" value="Kirim">
+    </form>
+
+    <?php
+    $tanggal = date("l, d F Y - H:i:s");
+    $tanggal = date("d-m-Y");
+     $ulangi = str_repeat("PHP ",3);
+    // Mengecek apakah form sudah disubmit
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Menyimpan input dari form ke dalam variabel
+        $nama = $_POST["nama"];
+        $kelas = $_POST["kelas"];
+        $identitas = $_POST["identitas"];
+        $n = strlen($nama);
+        
+        echo"saya adalah seorang $identitas dengan nama $nama dari kelas $kelas sedang belajar" . '"PHP PHP PHP "' . " pada tanggal $tanggal dan jumlah hurruf dari nama saya adalah $n";
+    }
+    ?>
+</body>
+</html>
+
