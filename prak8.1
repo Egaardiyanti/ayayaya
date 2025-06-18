@@ -1,0 +1,68 @@
+#include <cstdlib>
+#include <iostream>
+using namespace std;
+
+class Madis{ //deklarasi kelas 
+	public:
+		void pilih(); 
+		void permutasi();
+		void kombinasi(); 
+	private:
+		int q[100];
+};
+int fak(int value){
+ 	int jumlah=1;
+ 	for(int i=1; i<=value; i++){
+ 		jumlah = jumlah*i;
+	 }
+	 return jumlah;
+}
+void Madis::pilih(){ 
+	int n;
+	cout<<"1. Permutasi";
+	cout<<"\n2. Kombinasi"; 
+	cout<<"\n\nPilihan Anda : ";
+	cin>>n;
+	if(n==1)permutasi();
+	if(n==2)kombinasi();
+	else cout<<"\n\n**selesai**\n\n";
+}
+void Madis::permutasi(){
+int n,N,k,K,p;
+cout<<"\nMasukkan nilai n = ";cin>>n;
+cout<<"Masukkan nilai r = ";cin>>k;
+if(k>n){
+	cout<<"\nNilai r harus kurang dari n";
+	permutasi();}
+	p=n-k;
+	N=fak(n);
+	K=fak(p);
+	cout<<"\nMaka hasil permutasi : "<<N/K; 
+	cout<<"\n\n";
+	pilih();
+}
+void Madis::kombinasi(){
+	int n,N=1,k,K=1,p,P=1;
+	cout<<"\nMasukkan nilai n = ";cin>>n;
+	cout<<"Masukkan nilai r = ";cin>>k;
+	if(k>n){
+		cout<<"\nNilai r harus kurang dari n";
+		permutasi();}
+		p=n-k;
+		N=fak(n);
+		K=fak(k);
+		cout<<"\n(nr)!-> ";
+		P=fak(p);
+		cout<<"\nMaka hasil kombinasi : "<<N/(K*P);
+		cout<<"\n\n";
+		pilih();
+}
+int main(){
+	Madis z;
+	z.pilih();
+	z.permutasi();
+	z.kombinasi();
+	system("PAUSE");
+	return 0;
+	EXIT_SUCCESS;
+}
