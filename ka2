@@ -1,0 +1,132 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
+import java.util.Scanner;
+
+public class Main {
+    public Main() {
+    }
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        boolean loop = true;
+
+        do {
+            System.out.println("=== PILIH HEWAN ===");
+            System.out.println("1. Kucing");
+            System.out.println("2. Anjing");
+            System.out.println("3. Keluar");
+            System.out.print("Masukan pilihan : ");
+            int pilih = input.nextInt();
+            switch (pilih) {
+                case 1:
+                    input.nextLine();
+                    System.out.print("Masukan nama : ");
+                    String namaKucing = input.nextLine();
+                    System.out.print("Masukan umur : ");
+                    int umurKucing = input.nextInt();
+                    Kucing kucing = new Kucing(namaKucing, umurKucing);
+                    kucing.infoHewan();
+                    kucing.makanan();
+                    break;
+                case 2:
+                    input.nextLine();
+                    System.out.print("Masukan nama : ");
+                    String namaAnjing = input.nextLine();
+                    System.out.print("Masukan umur : ");
+                    int umurAnjing = input.nextInt();
+                    Anjing anjing = new Anjing(namaAnjing, umurAnjing);
+                    anjing.infoHewan();
+                    anjing.makanan();
+                    break;
+                case 3:
+                    loop = false;
+                    System.out.println("Program Berhenti");
+                    break;
+                default:
+                    System.out.println("inputan yang anda masukan tidak sesuai");
+            }
+        } while(loop);
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
+public class Hewan {
+    protected String nama;
+    protected int umur;
+
+    public Hewan(String nama, int umur) {
+        this.nama = nama;
+        this.umur = umur;
+    }
+
+    public void infoHewan() {
+        System.out.println("=== Info Hewan ===");
+        System.out.println("Nama : " + this.nama);
+        System.out.println("Umur : " + this.umur);
+    }
+
+    public void makanan() {
+        System.out.print("Makanan : ");
+    }
+}
+
+
+
+
+
+
+
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
+public class Kucing extends Hewan {
+    public Kucing(String nama, int umur) {
+        super(nama, umur);
+    }
+
+    public void makanan() {
+        super.makanan();
+        System.out.println("Makan Whiskas");
+    }
+}
+
+
+
+
+
+
+
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
+public class Anjing extends Hewan {
+    public Anjing(String nama, int umur) {
+        super(nama, umur);
+    }
+
+    public void makanan() {
+        super.makanan();
+        System.out.println("Makan Tulang");
+    }
+}
