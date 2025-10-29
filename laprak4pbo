@@ -1,0 +1,109 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        boolean loop = true;
+        do {
+            System.out.println("Pilih Opsi");
+            System.out.println("1. Ayam");
+            System.out.println("2. Kucing");
+            System.out.println("Masukkan Pilihan : ");
+            int pilih = input.nextInt();
+
+            switch (pilih) {
+                case 1:
+                    input.nextLine();
+                    System.out.println("Masukkan jenis ayam : ");
+                    String jenisAyam = input.nextLine();
+                    System.out.print("Masukkan jumlah kaki ayam : ");
+                    int kakiAyam = input.nextInt();
+                    Ayam ayam = new Ayam(jenisAyam, kakiAyam);
+                    System.out.print("jenis ayam: "+ jenisAyam);
+                    System.out.print("jumlah kaku ayam: "+kakiAyam);
+                    ayam.bersuara();
+                    break;
+                case 2:
+                    input.nextLine();
+                    System.out.print("Masukkan jenis ayam : ");
+                    String jenisKucing = input.nextLine();
+                    System.out.print("Masukkan jumlah kaki ayam: ");
+                    int kakiKucing = input.nextInt();
+                    Kucing kucing = new Kucing(jenisKucing, kakiKucing);
+                    System.out.print("jenis kucing: "+jenisKucing);
+                    System.out.print("jumlah kaki kuicng"+ kakiKucing);
+                    kucing.bersuara();
+                    break;
+                case 3:
+                    loop = false;
+                    System.out.println("Program berhenti");
+            }
+        } while(loop);
+    }
+}
+
+
+
+
+
+public class Hewan {
+    private String jenis;
+    private int kaki;
+
+    public int getKaki() {
+        return kaki;
+    }
+
+    public Hewan(String jenis, int kaki) {
+        this.jenis = jenis;
+        this.kaki = kaki;
+    }
+
+    public void bersuara(){
+        System.out.println("Hewan Bersuara");
+    }
+
+    public String getJenis() {
+        return jenis;
+    }
+
+    public void setJenis(String jenis) {
+        this.jenis = jenis;
+    }
+
+    public void setKaki(int kaki) {
+        this.kaki = kaki;
+    }
+}
+
+
+
+
+
+public class Ayam extends Hewan {
+    public Ayam(String jenis, int kaki) {
+        super(jenis, kaki);
+    }
+
+    @Override
+    public void bersuara() {
+        super.bersuara();
+        System.out.println("Kukuruyuk");
+    }
+}
+
+
+
+
+
+public class Kucing extends Hewan{
+    @Override
+    public void bersuara() {
+        super.bersuara();
+        System.out.println("Meowwww");
+    }
+
+    public Kucing(String jenis, int kaki) {
+        super(jenis, kaki);
+    }
+}
