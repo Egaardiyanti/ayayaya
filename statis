@@ -1,0 +1,126 @@
+//pegawai.java
+public class Pegawai {
+    protected String nip;
+    protected String nama;
+
+    public Pegawai(String nip, String nama) {
+        this.nip = nip;
+        this.nama = nama;
+    }
+
+    // Method default
+    public double hitungGaji() {
+        return 0;
+    }
+
+    public void info() {
+        System.out.println("NIP   : " + nip);
+        System.out.println("Nama  : " + nama);
+    }
+}
+
+
+
+pegawaitetap.java
+public class PegawaiTetap extends Pegawai {
+    private double gajiPokok;
+    private double tunjangan;
+
+    public PegawaiTetap(String nip, String nama, double gajiPokok, double tunjangan) {
+        super(nip, nama);
+        this.gajiPokok = gajiPokok;
+        this.tunjangan = tunjangan;
+    }
+
+    @Override
+    public double hitungGaji() {
+        return gajiPokok + tunjangan;
+    }
+
+    @Override
+    public void info() {
+        super.info();
+        System.out.println("Status: Pegawai Tetap");
+        System.out.println("Gaji Pokok : " + gajiPokok);
+        System.out.println("Tunjangan  : " + tunjangan);
+        System.out.println("Total Gaji : " + hitungGaji());
+        System.out.println("----------------------------------");
+    }
+}
+
+
+
+
+pegawaiaKontrak.java
+public class PegawaiKontrak extends Pegawai {
+    private double upahHarian;
+    private int hariKerja;
+
+    public PegawaiKontrak(String nip, String nama, double upahHarian, int hariKerja) {
+        super(nip, nama);
+        this.upahHarian = upahHarian;
+        this.hariKerja = hariKerja;
+    }
+
+    @Override
+    public double hitungGaji() {
+        return upahHarian * hariKerja;
+    }
+
+    @Override
+    public void info() {
+        super.info();
+        System.out.println("Status: Pegawai Kontrak");
+        System.out.println("Upah Harian : " + upahHarian);
+        System.out.println("Hari Kerja  : " + hariKerja);
+        System.out.println("Total Gaji  : " + hitungGaji());
+        System.out.println("----------------------------------");
+    }
+}
+
+
+
+
+//pegawaimagang.php
+public class PegawaiMagang extends Pegawai {
+    private double uangSaku;
+
+    public PegawaiMagang(String nip, String nama, double uangSaku) {
+        super(nip, nama);
+        this.uangSaku = uangSaku;
+    }
+
+    @Override
+    public double hitungGaji() {
+        return uangSaku;
+    }
+
+    @Override
+    public void info() {
+        super.info();
+        System.out.println("Status: Pegawai Magang");
+        System.out.println("Uang Saku : " + uangSaku);
+        System.out.println("Total Gaji: " + hitungGaji());
+        System.out.println("----------------------------------");
+    }
+}
+
+
+
+
+
+//main kelas
+public class Tester {
+    public static void main(String[] args) {
+        PegawaiTetap p1 = new PegawaiTetap("PT001", "Alya", 5000000, 1000000);
+        PegawaiKontrak p2 = new PegawaiKontrak("PK001", "Budi", 200000, 20);
+        PegawaiMagang p3 = new PegawaiMagang("PM001", "Citra", 1500000);
+
+        System.out.println("=== DATA PEGAWAI ===");
+        p1.info();
+        p2.info();
+        p3.info();
+    }
+}
+
+
