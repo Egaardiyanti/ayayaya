@@ -1,0 +1,160 @@
+//pegawai java
+import java.util.Scanner;
+
+public class Pegawai {
+    protected String nip;
+    protected String nama;
+
+    public Pegawai(String nip, String nama) {
+        this.nip = nip;
+        this.nama = nama;
+    }
+
+    public double hitungGaji() {
+        return 0; // default
+    }
+
+    public void info() {
+        System.out.println("NIP   : " + nip);
+        System.out.println("Nama  : " + nama);
+    }
+}
+
+
+
+
+//pegawain tetap
+public class PegawaiTetap extends Pegawai {
+    private double gajiPokok;
+    private double tunjangan;
+
+    public PegawaiTetap(String nip, String nama, double gajiPokok, double tunjangan) {
+        super(nip, nama);
+        this.gajiPokok = gajiPokok;
+        this.tunjangan = tunjangan;
+    }
+
+    @Override
+    public double hitungGaji() {
+        return gajiPokok + tunjangan;
+    }
+
+    @Override
+    public void info() {
+        super.info();
+        System.out.println("Status: Pegawai Tetap");
+        System.out.println("Gaji Pokok: " + gajiPokok);
+        System.out.println("Tunjangan : " + tunjangan);
+        System.out.println("Total Gaji: " + hitungGaji());
+    }
+}
+
+
+
+
+/pegawaikontrak
+public class PegawaiKontrak extends Pegawai {
+    private double upahHarian;
+    private int hariKerja;
+
+    public PegawaiKontrak(String nip, String nama, double upahHarian, int hariKerja) {
+        super(nip, nama);
+        this.upahHarian = upahHarian;
+        this.hariKerja = hariKerja;
+    }
+
+    @Override
+    public double hitungGaji() {
+        return upahHarian * hariKerja;
+    }
+
+    @Override
+    public void info() {
+        super.info();
+        System.out.println("Status: Pegawai Kontrak");
+        System.out.println("Upah Harian: " + upahHarian);
+        System.out.println("Hari Kerja : " + hariKerja);
+        System.out.println("Total Gaji : " + hitungGaji());
+    }
+}
+
+
+
+/revisi magang
+
+public class PegawaiMagang extends Pegawai {
+    private double uangSaku;
+
+    public PegawaiMagang(String nip, String nama, double uangSaku) {
+        super(nip, nama);
+        this.uangSaku = uangSaku;
+    }
+
+    @Override
+    public double hitungGaji() {
+        return uangSaku;
+    }
+
+    @Override
+    public void info() {
+        super.info();
+        System.out.println("Status: Pegawai Magang");
+        System.out.println("Uang Saku : " + uangSaku);
+        System.out.println("Total Gaji: " + hitungGaji());
+    }
+}
+
+//main
+import java.util.Scanner;
+
+public class Tester {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("=== INPUT PEGAWAI TETAP ===");
+        System.out.print("NIP: ");
+        String nipTetap = input.nextLine();
+        System.out.print("Nama: ");
+        String namaTetap = input.nextLine();
+        System.out.print("Gaji Pokok: ");
+        double gajiPokok = input.nextDouble();
+        System.out.print("Tunjangan: ");
+        double tunjangan = input.nextDouble();
+        input.nextLine(); // membersihkan buffer
+        PegawaiTetap p1 = new PegawaiTetap(nipTetap, namaTetap, gajiPokok, tunjangan);
+
+        System.out.println("\n=== INPUT PEGAWAI KONTRAK ===");
+        System.out.print("NIP: ");
+        String nipKontrak = input.nextLine();
+        System.out.print("Nama: ");
+        String namaKontrak = input.nextLine();
+        System.out.print("Upah Harian: ");
+        double upah = input.nextDouble();
+        System.out.print("Hari Kerja: ");
+        int hari = input.nextInt();
+        input.nextLine();
+        PegawaiKontrak p2 = new PegawaiKontrak(nipKontrak, namaKontrak, upah, hari);
+
+        System.out.println("\n=== INPUT PEGAWAI MAGANG ===");
+        System.out.print("NIP: ");
+        String nipMagang = input.nextLine();
+        System.out.print("Nama: ");
+        String namaMagang = input.nextLine();
+        System.out.print("Uang Saku: ");
+        double uangSaku = input.nextDouble();
+        PegawaiMagang p3 = new PegawaiMagang(nipMagang, namaMagang, uangSaku);
+
+        System.out.println("\n============================");
+        System.out.println("==== DATA PEGAWAI ========");
+        System.out.println("============================\n");
+
+        p1.info();
+        System.out.println("---------------------------");
+        p2.info();
+        System.out.println("---------------------------");
+        p3.info();
+
+        input.close();
+    }
+}
+
