@@ -1,0 +1,56 @@
+public class View {
+    public static void main(String[] args) {
+        Employee e = new Employee("Ali", 1200000);
+        Employee em = new Manager("Ali", 1200000, "Informatika");
+
+        System.out.println("Data employee :\n" + e.getDetails());
+        System.out.println("Data manager :\n" + em.getDetails());
+        em.cetak();
+    }
+}
+
+
+
+public class Manager extends Employee {
+    private String department;
+
+    public Manager(String nama, double salary, String dep) {
+        super(nama, salary);
+        department = dep;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    @Override
+    public String getDetails() {
+        return super.getDetails() + "\nDepartment : " + getDepartment();
+    }
+
+    @Override
+    public void cetak() {
+        System.out.println("Coba di Manager");
+    }
+}
+
+
+
+
+public class Employee {
+    private String name;
+    private double salary;
+
+    protected Employee(String n, double s) {
+        name = n;
+        salary = s;
+    }
+
+    protected String getDetails() {
+        return "Name : " + name + "\nSalary : " + salary;
+    }
+
+    public void cetak() {
+        System.out.println("coba di Employee");
+    }
+}
