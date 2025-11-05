@@ -1,0 +1,76 @@
+public class MainPembayaran {
+    public static void main(String[] args) {
+        // Membuat array berisi berbagai jenis pembayaran
+        Pembayaran[] daftarPembayaran = new Pembayaran[3];
+        daftarPembayaran[0] = new Tunai();
+        daftarPembayaran[1] = new Kartu();
+        daftarPembayaran[2] = new DompetDigital();
+
+        double totalBelanja = 75000;
+
+        // Menunjukkan efek polymorphism
+        for (Pembayaran p : daftarPembayaran) {
+            p.proses(totalBelanja);
+        }
+    }
+}
+
+
+
+
+public class DompetDigital extends Pembayaran {
+    @Override
+    public void proses(double total) {
+        double potongan = total * 0.05; // potongan 5%
+        double totalBayar = total - potongan;
+        System.out.println("=== Pembayaran Dompet Digital ===");
+        System.out.println("Total belanja: " + total);
+        System.out.println("Potongan biaya layanan (5%): " + potongan);
+        System.out.println("Total yang dibayar setelah potongan: " + totalBayar);
+        System.out.println();
+    }
+}
+
+
+
+
+
+public class Kartu extends Pembayaran {
+    @Override
+    public void proses(double total) {
+        double biayaAdmin = total * 0.02; // 2% biaya admin
+        double totalBayar = total + biayaAdmin;
+        System.out.println("=== Pembayaran Kartu ===");
+        System.out.println("Total belanja: " + total);
+        System.out.println("Biaya administrasi (2%): " + biayaAdmin);
+        System.out.println("Total yang harus dibayar: " + totalBayar);
+        System.out.println();
+    }
+}
+
+
+
+
+
+public class Tunai extends Pembayaran {
+    @Override
+    public void proses(double total) {
+        double uangDiberikan = 100000; // contoh uang diberikan
+        double kembalian = uangDiberikan - total;
+        System.out.println("=== Pembayaran Tunai ===");
+        System.out.println("Total belanja: " + total);
+        System.out.println("Uang diberikan: " + uangDiberikan);
+        System.out.println("Kembalian: " + kembalian);
+        System.out.println();
+    }
+}
+
+
+
+
+
+public class Pembayaran {
+    public void proses(double total) {
+        System.out.println("Memproses pembayaran sebesar: " + total);
+    }
+}
