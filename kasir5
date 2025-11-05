@@ -1,0 +1,148 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("=== SISTEM KASIR TOKO ===");
+        System.out.println("Diskon: Pakaian 50% (>150rb) / 30% (<150rb) | Buku 10%");
+        System.out.println();
+
+        System.out.println("Pilih jenis produk:");
+        System.out.println("1. Pakaian");
+        System.out.println("2. Buku");
+        System.out.print("Pilihan: ");
+        int pilihan = input.nextInt();
+        input.nextLine();
+
+        System.out.print("Nama produk: ");
+        String nama = input.nextLine();
+
+        System.out.print("Harga satuan: ");
+        double harga = input.nextDouble();
+
+        System.out.print("Jumlah beli: ");
+        int jumlahBeli = input.nextInt();
+
+        double totalHarga = harga * jumlahBeli;
+        double hargaSetelahDiskon;
+
+        if (pilihan == 1) {
+            Pakaian pakaian = new Pakaian(nama, harga);
+            hargaSetelahDiskon = pakaian.hitungDiskon(totalHarga);
+            pakaian.tampilkanDataDiskon();
+        } else {
+            Buku buku = new Buku(nama, harga);
+            hargaSetelahDiskon = buku.hitungDiskon(totalHarga);
+            buku.tampilkanDataDiskon();
+        }
+
+        System.out.println("Total harga sebelum diskon: Rp " + totalHarga);
+        System.out.println("Total harga setelah diskon: Rp " + hargaSetelahDiskon);
+        System.out.println("=== Terima kasih telah berbelanja ===");
+    }
+}
+
+
+
+public class Produk {
+    String nama;
+    double harga;
+
+    public Produk(String nama, double harga) {
+        this.nama = nama;
+        this.harga = harga;
+    }
+
+    // Method dasar (akan dioverride oleh subclass)
+    public double hitungDiskon(double totalHarga) {
+        return totalHarga; // default: tidak ada diskon
+    }
+}
+
+
+public class Buku extends Produk {
+    double jmlHarga;
+
+    public Buku(String nama, double harga) {
+        super(nama, harga);
+    }
+
+    @Override
+    public double hitungDiskon(double jumlahHarga) {
+        jmlHarga = jumlahHarga * 0.9; // diskon 10%
+        return jmlHarga;
+    }
+
+    public void tampilkanDataDiskon() {
+        System.out.println("\n--- Detail Produk ---");
+        System.out.println("Nama: " + nama);
+        System.out.println("Harga asli: Rp " + harga);
+        System.out.println("Harga bayar (setelah diskon): Rp " + jmlHarga);
+    }
+}
+
+
+
+import java.sql.SQLOutput;
+
+public class Pakaian extends Produk {
+    double jmlHarga;
+
+    public Pakaian(String nama, double harga) {
+        super(nama, harga);
+    }
+    
+    @Override
+    public double hitungDiskon(double jumlahHarga) {
+        if (jumlahHarga > 150000) {
+            jmlHarga = jumlahHarga * 0.5;
+        } else {
+            jmlHarga = jumlahHarga * 0.7;
+        }
+        return jmlHarga;
+    }
+
+    public void tampilkanDataDiskon() {
+        System.out.println("\n--- Detail Produk ---");
+        System.out.println("Nama: " + nama);
+        System.out.println("Harga asli: Rp " + harga);
+        System.out.println("Harga bayar (setelah diskon): Rp " + jmlHarga);
+
+    }
+}
+
+
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int batas;
+	cout << "===== Membuat Panah =====\n";
+	cout << "masukkan batas: ";
+	cin >> batas;
+	for(int i=0; i<batas; i++){
+		for(int j=0; j<=i; j++){
+			cout << " ";
+		}
+		for(int k=0; k<=i; k++){
+			cout <<"> ";
+		}
+		cout << endl;
+	}
+	
+	for(int i=batas-1; i>0; i--){
+		for(int j=0; j<=i; j++){
+			cout << " ";
+		}
+		for(int k=0; k<i; k++){
+			cout << "> ";
+		}
+		cout << endl;
+	}
+}
+
+
+
